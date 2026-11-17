@@ -1,4 +1,4 @@
-/* إعدادات عامة */
+/* إعدادات عامة وتصفير العناصر */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,123 +6,161 @@
 }
 
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #0b0f19;
-    color: #f3f4f6;
+    background-color: #030712;
+    color: #f8fafc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: hidden;
+    height: 100vh;
     direction: rtl;
 }
 
-/* شريط التنبيه العلوي */
-.top-hint {
+/* حاضنة الرسوميات (SVG والعرض ثلاثي الأبعاد) */
+#canvas-container {
     position: fixed;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(15, 23, 42, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 8px 18px;
-    border-radius: 30px;
-    font-size: 13px;
-    color: #e2e8f0;
-    z-index: 1000;
-    white-space: nowrap;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    inset: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
 }
 
-/* لوحة التحكم والتحكم في المحاكاة */
-.control-panel {
+#canvas-container svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* تنسيق الواجهات الزجاجية العامة (Glassmorphism) */
+.glass-panel {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 340px;
-    background: rgba(15, 23, 42, 0.82);
+    z-index: 10;
+    background: rgba(11, 19, 38, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
     border-radius: 20px;
-    padding: 20px;
-    z-index: 1000;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
 }
 
-.control-panel h1 {
-    font-size: 1.25rem;
+/* لوحة التحكم الجانبية */
+.control-panel {
+    top: 20px;
+    right: 20px;
+    width: 360px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.panel-header h1 {
+    font-size: 22px;
+    color: #ffffff;
     font-weight: 700;
-    margin-bottom: 6px;
-    color: #fff;
-    letter-spacing: -0.5px;
+    margin-bottom: 4px;
 }
 
-.control-panel p {
-    font-size: 0.85rem;
+.subtitle {
+    font-size: 13px;
     color: #94a3b8;
-    margin-bottom: 16px;
 }
 
-/* تصميم الأزرار التفاعلية */
+/* مجموعة الأزرار التفاعلية */
 .btn-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-bottom: 16px;
+    gap: 10px;
 }
 
 .control-btn {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
     background: rgba(30, 41, 59, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: #f8fafc;
-    padding: 10px 14px;
+    padding: 12px 16px;
     border-radius: 12px;
-    font-size: 0.9rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    text-align: right;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.control-btn span {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.control-btn small {
+    font-size: 11px;
+    color: #94a3b8;
 }
 
 .control-btn:hover {
-    background: rgba(51, 65, 85, 0.8);
+    background: rgba(56, 189, 248, 0.15);
     border-color: rgba(56, 189, 248, 0.4);
 }
 
-/* التجاوب الكامل مع الجوال */
+.control-btn.active {
+    background: #38bdf8;
+    color: #030712;
+    border-color: #38bdf8;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.control-btn.active span {
+    color: #030712;
+}
+
+.control-btn.active small {
+    color: #0f172a;
+}
+
+/* بطاقة المعلومات العلمية المستحدثة */
+.scientific-card {
+    background: rgba(15, 23, 42, 0.9);
+    padding: 18px;
+    border-radius: 14px;
+    border-right: 4px solid #38bdf8;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.scientific-card h3 {
+    color: #38bdf8;
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.scientific-card p {
+    color: #cbd5e1;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* التجاوب مع الشاشات الصغيرة والهواتف الذكية */
 @media (max-width: 768px) {
-    .top-hint {
-        font-size: 11px;
-        padding: 6px 12px;
-        top: 10px;
-        max-width: 90%;
-        text-align: center;
-        white-space: normal;
-    }
-
     .control-panel {
-        left: 4% !important;
-        right: 4% !important;
-        bottom: 12px !important;
-        width: 92% !important;
-        max-height: 40vh !important; /* لكي لا تغطي على الشاشة بالكامل وتترك مساحة للرؤية */
-        overflow-y: auto !important; /* لجعل اللوحة قابلة للتمرير بسهولة */
-        padding: 14px !important;
-        border-radius: 16px;
+        width: 92%;
+        right: 4%;
+        left: 4%;
+        bottom: 15px;
+        top: auto;
+        max-height: 50vh;
+        overflow-y: auto;
+        padding: 16px;
     }
 
-    .control-panel h1 {
-        font-size: 1.1rem;
-    }
-
-    .control-panel p {
-        font-size: 0.8rem;
-        margin-bottom: 10px;
+    .panel-header h1 {
+        font-size: 18px;
     }
 
     .control-btn {
-        padding: 8px 12px;
-        font-size: 0.85rem;
+        padding: 10px 12px;
+    }
+
+    .scientific-card {
+        padding: 12px;
     }
 }
