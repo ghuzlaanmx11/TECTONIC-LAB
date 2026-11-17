@@ -3,89 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECTONIC LAB | المختبر الافتراضي لعلم الأرض</title>
-    <!-- ربط تنسيقات SCSS المحولة إلى CSS احترافي -->
+    <title>Tectonic Lab - مختبر التكتونية</title>
     <link rel="stylesheet" href="style.css">
-    <!-- مكتبات الرسوميات ثلاثية الأبعاد -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
 <body>
 
-    <!-- حاوية الرسم ثلاثي الأبعاد -->
-    <div id="canvas-container"></div>
-
-    <!-- لوحة التحكم الاحترافية العائمة -->
-    <aside class="glass-panel control-panel">
-        <header class="panel-header">
-            <span class="tech-badge">ADVANCED 3D LAB</span>
-            <h1>TECTONIC LAB</h1>
-            <p class="subtitle">المختبر الافتراضي التفاعلي لحركة الصفائح التكتونية</p>
-        </header>
-
-        <nav class="controls-grid">
-            <button class="mode-btn active" data-mode="divergent">
-                <span class="icon">↔</span>
-                <div class="btn-text">
-                    <strong>الحركة التباعدية</strong>
-                    <small>Divergent Boundary</small>
-                </div>
-            </button>
-
-            <button class="mode-btn" data-mode="convergent">
-                <span class="icon">⇥⇤</span>
-                <div class="btn-text">
-                    <strong>الحركة التقاربية والاندساس</strong>
-                    <small>Subduction Zone</small>
-                </div>
-            </button>
-
-            <button class="mode-btn" data-mode="transform">
-                <span class="icon">⇅</span>
-                <div class="btn-text">
-                    <strong>الانزلاق التحويلي</strong>
-                    <small>Transform Fault</small>
-                </div>
-            </button>
-        </nav>
-
-        <div class="physics-controls">
-            <div class="slider-box">
-                <label for="speed-slider">سرعة المحاكاة الفيزيائية: <span id="speed-val">1.0x</span></label>
-                <input type="range" id="speed-slider" min="0.1" max="3.0" step="0.1" value="1.0">
-            </div>
-            <div class="status-indicator">
-                <span class="dot pulse"></span>
-                <span id="system-status">النظام مستقر - محاكاة تفاعلية 60 FPS</span>
-            </div>
-        </div>
-
-        <section class="scientific-card">
-            <h3 id="sci-title">الحركة التباعدية (انتشار قاع المحيط)</h3>
-            <p id="sci-desc">تتباعد الصفيحتان التكتونيتان نتيجة تيارات الحمل الصاعدة في الوشاح، مما يسمح للماغما بالصعود والتصلب لتكوين قشرة محيطية جديدة.</p>
-            <div class="phenomena-tags" id="sci-tags">
-                <span>صعود الماغما</span>
-                <span>حيد وسط المحيط</span>
-                <span>تجدد القشرة</span>
-            </div>
-        </section>
-    </aside>
-
-    <!-- شريط التوجيه بالماوس -->
-    <div class="glass-panel hint-bar">
-        <span>🖱️ السحب: تדור المشهد 360° | 📜 العجلة: تقريب وتبعيد</span>
+    <!-- شريط التنبيه العلوي -->
+    <div class="top-hint">
+        👆 اسحب بإصبعك لتدوير المشهد • 🔍 قرّب بإصبعين للتكبير
     </div>
 
-    <!-- بطاقة التعريف الاحترافية -->
-    <footer class="glass-panel credits-card">
-        <div class="credit-info">
-            <span>إعداد المهندسة: <strong>غزلان المشعوف</strong></span>
-            <span class="separator">|</span>
-            <span>الصف: <strong>ثالث 8</strong></span>
+    <!-- لوحة التحكم الجانبية العائمة -->
+    <div class="control-panel">
+        <h1>TECTONIC LAB</h1>
+        <p>المختبر الافتراضي لتفاعل الصفح التكتونية</p>
+        
+        <div class="btn-group">
+            <button class="control-btn">
+                <span>الحركة التباعدية</span>
+                <small>Divergent</small>
+            </button>
+            <button class="control-btn">
+                <span>الحركة التقاربية والاندساس</span>
+                <small>Subduction</small>
+            </button>
+            <button class="control-btn">
+                <span>الانزلاق التحويلي</span>
+                <small>Transform</small>
+            </button>
         </div>
-    </footer>
 
-    <!-- ربط ملف TypeScript المُترجم -->
-    <script src="app.js"></script>
+        <div style="font-size: 0.8rem; color: #64748b; text-align: center; margin-top: 10px;">
+            إعداد المهندسة: غزلان المشيوف | الصف: ثالث متوسط
+        </div>
+    </div>
+
+    <!-- هنا يتم وضع كود Three.js أو المشهد الثلاثي الأبعاد الخاص بك -->
+    <script src="script.js"></script>
 </body>
 </html>
