@@ -1,0 +1,207 @@
+:root {
+    --bg-dark: #070b14;
+    --panel-bg: rgba(13, 20, 36, 0.78);
+    --border-color: rgba(56, 189, 248, 0.25);
+    --accent: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.4);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+#canvas-container {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+}
+
+.glass-panel {
+    position: fixed;
+    z-index: 10;
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+    will-change: transform; /* تسريع العرض عبر كرت الشاشة */
+}
+
+.control-panel {
+    top: 20px;
+    right: 20px;
+    width: 360px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.badge {
+    display: inline-block;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+h1 {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    background: linear-gradient(90deg, #ffffff, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mode-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    color: var(--text-main);
+    padding: 12px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: right;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.mode-btn:hover {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: var(--accent);
+    transform: translateX(-3px);
+}
+
+.mode-btn.active {
+    background: linear-gradient(135deg, rgba(2, 132, 199, 0.4), rgba(56, 189, 248, 0.2));
+    border-color: var(--accent);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.mode-btn .icon {
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    background: rgba(15, 23, 42, 0.8);
+    border-radius: 8px;
+    color: var(--accent);
+}
+
+.mode-btn strong {
+    display: block;
+    font-size: 14px;
+}
+
+.mode-btn small {
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.slider-group {
+    background: rgba(15, 23, 42, 0.6);
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+.slider-group input[type="range"] {
+    width: 100%;
+    margin-top: 8px;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+.scientific-card {
+    background: rgba(15, 23, 42, 0.85);
+    padding: 15px;
+    border-radius: 12px;
+    border-right: 4px solid var(--accent);
+}
+
+.scientific-card h3 {
+    font-size: 15px;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.scientific-card p {
+    font-size: 13px;
+    line-height: 1.65;
+    color: #cbd5e1;
+}
+
+.phenomena-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.phenomena-tags span {
+    background: rgba(56, 189, 248, 0.12);
+    color: #7dd3fc;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.hint-bar {
+    top: 20px;
+    left: 20px;
+    padding: 10px 16px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.credits-card {
+    bottom: 20px;
+    left: 20px;
+    padding: 12px 20px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.credits-card strong {
+    color: var(--accent);
+}
+
+.divider {
+    color: #475569;
+}
