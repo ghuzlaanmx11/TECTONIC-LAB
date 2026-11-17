@@ -1,207 +1,128 @@
-:root {
-    --bg-dark: #070b14;
-    --panel-bg: rgba(13, 20, 36, 0.78);
-    --border-color: rgba(56, 189, 248, 0.25);
-    --accent: #38bdf8;
-    --accent-glow: rgba(56, 189, 248, 0.4);
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-}
-
+/* إعدادات عامة */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    user-select: none;
 }
 
 body {
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    font-family: system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #0b0f19;
+    color: #f3f4f6;
     overflow: hidden;
-    width: 100vw;
-    height: 100vh;
+    direction: rtl;
 }
 
-#canvas-container {
+/* شريط التنبيه العلوي */
+.top-hint {
     position: fixed;
-    inset: 0;
-    z-index: 1;
-}
-
-.glass-panel {
-    position: fixed;
-    z-index: 10;
-    background: var(--panel-bg);
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 23, 42, 0.75);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
-    will-change: transform; /* تسريع العرض عبر كرت الشاشة */
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 13px;
+    color: #e2e8f0;
+    z-index: 1000;
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
+/* لوحة التحكم والتحكم في المحاكاة */
 .control-panel {
-    top: 20px;
-    right: 20px;
-    width: 360px;
-    padding: 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.badge {
-    display: inline-block;
-    background: rgba(56, 189, 248, 0.15);
-    color: var(--accent);
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 20px;
-    letter-spacing: 1px;
-    margin-bottom: 6px;
-}
-
-h1 {
-    font-size: 26px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    background: linear-gradient(90deg, #ffffff, #38bdf8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.subtitle {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-top: 4px;
-}
-
-.controls {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.mode-btn {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: rgba(30, 41, 59, 0.6);
-    border: 1px solid rgba(148, 163, 184, 0.2);
-    color: var(--text-main);
-    padding: 12px 15px;
-    border-radius: 12px;
-    cursor: pointer;
-    text-align: right;
-    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-}
-
-.mode-btn:hover {
-    background: rgba(56, 189, 248, 0.15);
-    border-color: var(--accent);
-    transform: translateX(-3px);
-}
-
-.mode-btn.active {
-    background: linear-gradient(135deg, rgba(2, 132, 199, 0.4), rgba(56, 189, 248, 0.2));
-    border-color: var(--accent);
-    box-shadow: 0 0 15px var(--accent-glow);
-}
-
-.mode-btn .icon {
-    font-size: 20px;
-    width: 36px;
-    height: 36px;
-    display: grid;
-    place-items: center;
-    background: rgba(15, 23, 42, 0.8);
-    border-radius: 8px;
-    color: var(--accent);
-}
-
-.mode-btn strong {
-    display: block;
-    font-size: 14px;
-}
-
-.mode-btn small {
-    color: var(--text-muted);
-    font-size: 11px;
-}
-
-.slider-group {
-    background: rgba(15, 23, 42, 0.6);
-    padding: 10px 14px;
-    border-radius: 10px;
-    font-size: 13px;
-}
-
-.slider-group input[type="range"] {
-    width: 100%;
-    margin-top: 8px;
-    accent-color: var(--accent);
-    cursor: pointer;
-}
-
-.scientific-card {
-    background: rgba(15, 23, 42, 0.85);
-    padding: 15px;
-    border-radius: 12px;
-    border-right: 4px solid var(--accent);
-}
-
-.scientific-card h3 {
-    font-size: 15px;
-    color: var(--accent);
-    margin-bottom: 8px;
-}
-
-.scientific-card p {
-    font-size: 13px;
-    line-height: 1.65;
-    color: #cbd5e1;
-}
-
-.phenomena-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 12px;
-}
-
-.phenomena-tags span {
-    background: rgba(56, 189, 248, 0.12);
-    color: #7dd3fc;
-    font-size: 11px;
-    padding: 4px 8px;
-    border-radius: 6px;
-}
-
-.hint-bar {
-    top: 20px;
-    left: 20px;
-    padding: 10px 16px;
-    font-size: 12px;
-    color: var(--text-muted);
-}
-
-.credits-card {
+    position: fixed;
     bottom: 20px;
-    left: 20px;
-    padding: 12px 20px;
-    font-size: 14px;
+    right: 20px;
+    width: 340px;
+    background: rgba(15, 23, 42, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.control-panel h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #fff;
+    letter-spacing: -0.5px;
+}
+
+.control-panel p {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 16px;
+}
+
+/* تصميم الأزرار التفاعلية */
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.control-btn {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: space-between;
+    width: 100%;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #f8fafc;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.credits-card strong {
-    color: var(--accent);
+.control-btn:hover {
+    background: rgba(51, 65, 85, 0.8);
+    border-color: rgba(56, 189, 248, 0.4);
 }
 
-.divider {
-    color: #475569;
+/* التجاوب الكامل مع الجوال */
+@media (max-width: 768px) {
+    .top-hint {
+        font-size: 11px;
+        padding: 6px 12px;
+        top: 10px;
+        max-width: 90%;
+        text-align: center;
+        white-space: normal;
+    }
+
+    .control-panel {
+        left: 4% !important;
+        right: 4% !important;
+        bottom: 12px !important;
+        width: 92% !important;
+        max-height: 40vh !important; /* لكي لا تغطي على الشاشة بالكامل وتترك مساحة للرؤية */
+        overflow-y: auto !important; /* لجعل اللوحة قابلة للتمرير بسهولة */
+        padding: 14px !important;
+        border-radius: 16px;
+    }
+
+    .control-panel h1 {
+        font-size: 1.1rem;
+    }
+
+    .control-panel p {
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+
+    .control-btn {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
 }
